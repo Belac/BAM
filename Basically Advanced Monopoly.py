@@ -33,9 +33,9 @@ class Player():  # Creating the class of 'Player'
         self.eenPlayerMoney100Quant = 4
         self.eenPlayerMoney500Quant = 2
         self.totalCash = ((money1 * self.eenPlayerMoney1Quant) + (money5 * self.eenPlayerMoney5Quant) + (
-        money10 * self.eenPlayerMoney10Quant) + (money20 * self.eenPlayerMoney20Quant) + (
-                          money50 * self.eenPlayerMoney50Quant) + (money100 * self.eenPlayerMoney100Quant) + (
-                          money500 * self.eenPlayerMoney500Quant))
+            money10 * self.eenPlayerMoney10Quant) + (money20 * self.eenPlayerMoney20Quant) + (
+                              money50 * self.eenPlayerMoney50Quant) + (money100 * self.eenPlayerMoney100Quant) + (
+                              money500 * self.eenPlayerMoney500Quant))
 
     def roll(self):  # A method which rolls the dice
         self.eindie = randint(1, 6)
@@ -107,30 +107,30 @@ eenPlayer = Player(nameEntry, pieceEntry)  # The instantiation of a player
 nameEntry2 = input("What is Player Two's Name? ")
 pieceEntry2 = input("What Character is " + nameEntry2 + "? ")
 tweePlayer = Player(nameEntry2, pieceEntry2)
-playerList = [eenPlayer,tweePlayer]
+playerList = [eenPlayer, tweePlayer]
 
 # --------------------------------------------------GAME-----------------------------------------------------------#
 
 currentPlayerNo = 1
 while True:
-    #Pre-Round Checks
+    # Pre-Round Checks
     if len(playerList) == 1:
         print(playerList[0].playerName, "has won!")
         break
     if currentPlayer.totalCash <= 0:
         playerList.remove(currentPlayer)
 
-    #Player Turn
+    # Player Turn
     currentPlayer = playerList[1]
     currentPlayer.roll()
     if currentPlayer.pos > 25:
         currentPlayer.pos = currentPlayer.pos - 26
-        print ("You have passed Start, collect 200")
+        print("You have passed Start, collect 200")
         currentPlayer.totalCash += 200
-    print (currentPlayer.returnName(), "is on position", currentPlayer.pos)
+    print(currentPlayer.returnName(), "is on position", currentPlayer.pos)
     for i in tileList:
         if i.tilePos == currentPlayer.pos:
-            print ("Position", currentPlayer.pos, "is", i.tileName)
+            print("Position", currentPlayer.pos, "is", i.tileName)
             if i.tileName == "Border Control":
                 pass
             else:
@@ -141,16 +141,16 @@ while True:
                     while lmn == "ON":
                         if yayornay == "YES":
                             i.tileOwner = currentPlayer.playerName
-                            currentPlayer.totalCash = (currentPlayer.totalCash-i.tilePrice)
+                            currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
                             lmn = ("OFF")
                         elif yayornay == "NO":
-                            print ("Ok, moving on...")
+                            print("Ok, moving on...")
                             lmn = ("OFF")
                         else:
-                            print ("Please State Yes or No")
+                            print("Please State Yes or No")
 
-    #Turn Over
-    print ("\n")
+    # Turn Over
+    print("\n")
     if currentPlayerNo == 1:
         currentPlayerNo += 1
     else:
