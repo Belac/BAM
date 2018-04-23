@@ -90,7 +90,7 @@ tile16 = City("Vienna", 350, 16)
 tile17 = City("Bucharest", 400, 17)
 tile18 = City("Warsaw", 400, 18)
 tile19 = City("Lisbon", 400, 19)
-tile20 = Tile("Go To Jail", 20)
+tile20 = Tile("Go to Jail", 20)
 tile21 = City("Madrid", 450, 21)
 tile22 = City("Amsterdam", 450, 22)
 tile23 = City("Paris", 500, 23)
@@ -111,47 +111,53 @@ playerList = [eenPlayer, tweePlayer]
 
 # --------------------------------------------------GAME-----------------------------------------------------------#
 
-currentPlayerNo = 1
+currentPlayerNo = 0
+miss = 0
 while True:
     # Pre-Round Checks
-    if len(playerList) == 1:
-        print(playerList[0].playerName, "has won!")
-        break
-    if currentPlayer.totalCash <= 0:
-        playerList.remove(currentPlayer)
-
-    # Player Turn
     currentPlayer = playerList[1]
-    currentPlayer.roll()
-    if currentPlayer.pos > 25:
-        currentPlayer.pos = currentPlayer.pos - 26
-        print("You have passed Start, collect 200")
-        currentPlayer.totalCash += 200
-    print(currentPlayer.returnName(), "is on position", currentPlayer.pos)
-    for i in tileList:
-        if i.tilePos == currentPlayer.pos:
-            print("Position", currentPlayer.pos, "is", i.tileName)
-            if i.tileName == "Border Control":
-                pass
-            else:
-                if i.tileOwner == eenPlayer or tweePlayer:
-                    yayornay = input("Do you wish to buy this tile?")
-                    yayornay = yayornay.upper()
-                    lmn = ("ON")
-                    while lmn == "ON":
-                        if yayornay == "YES":
-                            i.tileOwner = currentPlayer.playerName
-                            currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
-                            lmn = ("OFF")
-                        elif yayornay == "NO":
-                            print("Ok, moving on...")
-                            lmn = ("OFF")
-                        else:
-                            print("Please State Yes or No")
+    if miss == 0:
+        if len(playerList) == 1:
+            print(playerList[0].playerName, "has won!")
+            break
+        if currentPlayer.totalCash <= 0:
+            playerList.remove(currentPlayer)
+
+        # Player Turn
+        currentPlayer.roll()
+        if currentPlayer.pos > 25:
+            currentPlayer.pos = currentPlayer.pos - 26
+            print("You have passed Start, collect 200")
+            currentPlayer.totalCash += 200
+        print(currentPlayer.returnName(), "is on position", currentPlayer.pos)
+        for i in tileList:
+            if i.tilePos == currentPlayer.pos:
+                print("Position", currentPlayer.pos, "is", i.tileName)
+                if i.tileName == "Border Control" or "Go to Jail" or "Jail":
+                    miss = 1
+                    pass
+                else:
+                    if i.tileOwner == eenPlayer or tweePlayer:
+                        yayornay = input("Do you wish to buy this tile?")
+                        yayornay = yayornay.upper()
+                        lmn = ("ON")
+                        while lmn == "ON":
+                            if yayornay == "YES":
+                                i.tileOwner = currentPlayer.playerName
+                                currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
+                                lmn = ("OFF")
+                            elif yayornay == "NO":
+                                print("Ok, moving on...")
+                                lmn = ("OFF")
+                            else:
+                                print("Please State Yes or No")
+    elif miss == 1:
+        print(currentPlayer.playerName+"'s turn has been passed.")
+        miss = 0
 
     # Turn Over
     print("\n")
-    if currentPlayerNo == 1:
+    if currentPlayerNo == 0:
         currentPlayerNo += 1
     else:
         currentPlayerNo = 1
