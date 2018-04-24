@@ -143,9 +143,12 @@ try:
                             lmn = ("ON")
                             while lmn == "ON":
                                 if yayornay == "YES":
-                                    i.tileOwner = currentPlayer.playerName
-                                    currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
-                                    lmn = ("OFF")
+                                    if currentPlayer.totalCash < i.tilePrice:
+                                        print ("Unable to purchase, insufficient funds.")
+                                    else:
+                                        i.tileOwner = currentPlayer.playerName
+                                        currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
+                                        lmn = ("OFF")
                                 elif yayornay == "NO":
                                     print("Ok, moving on...")
                                     lmn = ("OFF")
