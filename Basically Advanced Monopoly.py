@@ -152,6 +152,8 @@ while True:
                             else:
                                 print("Please State Yes or No")
                     elif i.tileOwner == eenPlayer or tweePlayer:
+                        currentPlayer.totalCash = (currentPlayer.totalCash-(i.tilePrice/2))
+                        i.tileOwner.totalCash = (i.tileOwner.totalCash + (i.tilePrice/2))
                         pass
 
     elif miss == 1:
