@@ -8,13 +8,13 @@ try:
 
     from random import *
 
-    money1 = 1
-    money5 = 5
-    money10 = 10
-    money20 = 20
-    money50 = 50
-    money100 = 100
-    money500 = 500
+    # money1 = 1
+    # money5 = 5
+    # money10 = 10
+    # money20 = 20
+    # money50 = 50
+    # money100 = 100
+    # money500 = 500
 
 
     # -------------------------------------------------OBJECTS---------------------------------------------------------#
@@ -27,17 +27,14 @@ try:
         def __init__(self, name, piece):  # The constructor method which sets up the class
             self.playerName = name
             self.playerPiece = piece
-            self.eenPlayerMoney1Quant = 5
-            self.eenPlayerMoney5Quant = 1
-            self.eenPlayerMoney10Quant = 2
-            self.eenPlayerMoney20Quant = 1
-            self.eenPlayerMoney50Quant = 1
-            self.eenPlayerMoney100Quant = 4
-            self.eenPlayerMoney500Quant = 2
-            self.totalCash = ((money1 * self.eenPlayerMoney1Quant) + (money5 * self.eenPlayerMoney5Quant) + (
-                money10 * self.eenPlayerMoney10Quant) + (money20 * self.eenPlayerMoney20Quant) + (
-                                  money50 * self.eenPlayerMoney50Quant) + (money100 * self.eenPlayerMoney100Quant) + (
-                                  money500 * self.eenPlayerMoney500Quant))
+            # self.eenPlayerMoney1Quant = 5
+            # self.eenPlayerMoney5Quant = 1
+            # self.eenPlayerMoney10Quant = 2
+            # self.eenPlayerMoney20Quant = 1
+            # self.eenPlayerMoney50Quant = 1
+            # self.eenPlayerMoney100Quant = 4
+            # self.eenPlayerMoney500Quant = 2
+            self.totalCash = 1500
 
         def roll(self):  # A method which rolls the dice
             self.eindie = randint(1, 6)
