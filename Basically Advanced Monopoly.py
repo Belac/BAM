@@ -137,7 +137,7 @@ while True:
                     miss = 1
                     pass
                 else:
-                    if i.tileOwner == eenPlayer or tweePlayer:
+                    if i.tileOwner == "":
                         yayornay = input("Do you wish to buy this tile?")
                         yayornay = yayornay.upper()
                         lmn = ("ON")
@@ -151,8 +151,11 @@ while True:
                                 lmn = ("OFF")
                             else:
                                 print("Please State Yes or No")
+                    elif i.tileOwner == eenPlayer or tweePlayer:
+                        pass
+
     elif miss == 1:
-        print(currentPlayer.playerName+"'s turn has been passed.")
+        print(currentPlayer.playerName + "'s turn has been passed.")
         miss = 0
 
     # Turn Over
