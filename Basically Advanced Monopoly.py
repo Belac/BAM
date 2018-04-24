@@ -1,7 +1,8 @@
-"""""""""""""""""""""""""""
+print("""
+   ===================================
 Basically Advanced Monopoly: Euro Edition
-
-"""""""""""""""""""""""""""
+   ===================================
+""")
 # --------------------------------------------------SETUP----------------------------------------------------------#
 
 from random import *
@@ -17,7 +18,7 @@ money500 = 500
 
 # -------------------------------------------------OBJECTS---------------------------------------------------------#
 
-class Player():  # Creating the class of 'Player'
+class Player:  # Creating the class of 'Player'
     pos = 0  # An attribute storing the current position of the player
     playerName = ""  # An attribute storing the player's name
     playerPiece = ""  # An attribute storing the player's piece
@@ -48,23 +49,23 @@ class Player():  # Creating the class of 'Player'
         return self.playerName
 
 
-class Tile():  # A parent class
+class Tile:  # A parent class
     def __init__(self, name, pos):
         self.tileName = name
         self.tilePos = pos
 
-    def returnName():
+    def returnName(self):
         return self.tileName
 
 
-class City():  # A child class
+class City:  # A child class
     def __init__(self, name, price, pos):
         self.tileName = name
         self.tilePrice = price
         self.tileOwner = ""
         self.tilePos = pos
 
-    def returnName():
+    def returnName(self):
         return self.tileName
 
 
@@ -83,7 +84,7 @@ tile9 = City("Vilnius", 250, 9)
 tile10 = City("Dublin", 250, 10)
 tile11 = City("Copenhagen", 300, 11)
 tile12 = City("Riga", 300, 12)
-tile13 = Tile("Border Control", 13)  # Miss a Turn(, Roll, if player rolls double 6, go to jail)
+tile13 = Tile("Border Control", 13)  # Miss a Turn #Roll, if player rolls double 6, go to jail
 tile14 = City("Athens", 350, 14)
 tile15 = City("Stockholm", 350, 15)
 tile16 = City("Vienna", 350, 16)
@@ -115,7 +116,8 @@ currentPlayerNo = 0
 miss = 0
 while True:
     # Pre-Round Checks
-    currentPlayer = playerList[1]
+    currentPlayer = playerList[currentPlayerNo]
+    print (currentPlayer.playerName+"'s Turn!")
     if miss == 0:
         if len(playerList) == 1:
             print(playerList[0].playerName, "has won!")
@@ -133,12 +135,12 @@ while True:
         for i in tileList:
             if i.tilePos == currentPlayer.pos:
                 print("Position", currentPlayer.pos, "is", i.tileName)
-                if i.tileName == "Border Control" or "Go to Jail" or "Jail":
+                if i.tileName == "Border Control":
                     miss = 1
-                    pass
-                else:
+
+                elif i.tileOwner == eenPlayer.playerName or tweePlayer.playerName:
                     if i.tileOwner == "":
-                        yayornay = input("Do you wish to buy this tile?")
+                        yayornay = input("Do you wish to buy this tile? ")
                         yayornay = yayornay.upper()
                         lmn = ("ON")
                         while lmn == "ON":
@@ -151,16 +153,24 @@ while True:
                                 lmn = ("OFF")
                             else:
                                 print("Please State Yes or No")
-                    elif i.tileOwner == eenPlayer or tweePlayer:
+                    elif i.tileOwner == currentPlayer.playerName:
+                        pass
+
+                    else:
                         currentPlayer.totalCash = (currentPlayer.totalCash-(i.tilePrice/2))
                         i.tileOwner.totalCash = (i.tileOwner.totalCash + (i.tilePrice/2))
-                        pass
+
+
+                else:
+                    print ("Nothing to do here...")
+
 
     elif miss == 1:
         print(currentPlayer.playerName + "'s turn has been passed.")
         miss = 0
 
     # Turn Over
+    print ("NEEEEEEEEEEEXXT TURN!")
     print("\n")
     if currentPlayerNo == 0:
         currentPlayerNo += 1
