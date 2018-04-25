@@ -63,6 +63,7 @@ try:
             self.tilePrice = price
             self.tileOwner = ""
             self.tilePos = pos
+            self.tileLevel = 0
 
         def returnName(self):
             return self.tileName
@@ -137,30 +138,38 @@ try:
                     if i.tileName == "Border Control":
                         miss = 1
 
-                    elif i.tileOwner == eenPlayer.playerName or tweePlayer.playerName:
-                        if i.tileOwner == "":
-                            yayornay = input("Do you wish to buy this tile? ")
-                            yayornay = yayornay.upper()
-                            lmn = ("ON")
-                            while lmn == "ON":
-                                if yayornay == "YES":
-                                    if currentPlayer.totalCash < i.tilePrice:
-                                        print("Unable to purchase, insufficient funds.")
-                                    else:
-                                        i.tileOwner = currentPlayer.playerName
-                                        currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
-                                        lmn = ("OFF")
-                                elif yayornay == "NO":
-                                    print("Ok, moving on...")
-                                    lmn = ("OFF")
+                    elif i.tileOwner == "":
+                        yayornay = input("Do you wish to buy this tile? ")
+                        yayornay = yayornay.upper()
+                        lmn = ("ON")
+                        while lmn == "ON":
+                            if yayornay == "YES":
+                                if currentPlayer.totalCash < i.tilePrice:
+                                    print("Unable to purchase, insufficient funds.")
                                 else:
-                                    print("Please State Yes or No")
-                        elif i.tileOwner == currentPlayer.playerName:
-                            pass
+                                    i.tileOwner = currentPlayer.playerName
+                                    currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
+                                    lmn = ("OFF")
+                            elif yayornay == "NO":
+                                print("Ok, moving on...")
+                                lmn = ("OFF")
+                            else:
+                                print("Please State Yes or No")
 
+                    elif i.tileOwner == currentPlayer.playerName:
+                        if i.tileLevel <= 4:
+                            upgrade = input("Do you want to upgrade this city?")
+                            upgrade = upgrade.upper()
+                            if upgrade == "YES":
+                                currentPlayer.totalCash -= (i.tilePrice * 0.25)
+                                i.tileLevel += 1
                         else:
-                            currentPlayer.totalCash = (currentPlayer.totalCash - (i.tilePrice / 2))
-                            i.tileOwner.totalCash = (i.tileOwner.totalCash + (i.tilePrice / 2))
+                            print("City already at maximum level.")
+                            continue
+
+                    else:
+                        currentPlayer.totalCash = (currentPlayer.totalCash - ((i.tilePrice / 2)*i.tileLevel)
+                        i.tileOwner.totalCash = (i.tileOwner.totalCash + ((i.tilePrice / 2)*i.tileLevel))
 
 
                     else:
@@ -170,6 +179,7 @@ try:
         elif miss == 1:
             print(currentPlayer.playerName + "'s turn has been passed.")
             miss = 0
+            continue
 
         # Turn Over
         print("NEEEEEEEEEEEXXT TURN!")
