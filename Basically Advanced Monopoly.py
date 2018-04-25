@@ -169,7 +169,8 @@ try:
 
                     else:
                         currentPlayer.totalCash = (currentPlayer.totalCash - ((i.tilePrice / 2)*i.tileLevel)
-                        i.tileOwner.totalCash = (i.tileOwner.totalCash + ((i.tilePrice / 2)*i.tileLevel))
+                        renter = i.tileOwner
+                        renter.totalCash += ((i.tilePrice / 2)*i.tileLevel)
 
 
                     else:
