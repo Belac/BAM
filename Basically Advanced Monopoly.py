@@ -4,9 +4,10 @@ try:
     Basically Advanced Monopoly: Euro Edition
        ===================================
     """)
-    # --------------------------------------------------SETUP----------------------------------------------------------#
+    # --------------------------------------------------SETUP------------------------------------------------------#
 
     from random import *
+
 
     # money1 = 1
     # money5 = 5
@@ -17,7 +18,7 @@ try:
     # money500 = 500
 
 
-    # -------------------------------------------------OBJECTS---------------------------------------------------------#
+    # -------------------------------------------------OBJECTS-----------------------------------------------------#
 
     class Player:  # Creating the class of 'Player'
         pos = 0  # An attribute storing the current position of the player
@@ -67,7 +68,7 @@ try:
             return self.tileName
 
 
-    # ----------------------------------------------TILE CREATION------------------------------------------------------#
+    # ----------------------------------------------TILE CREATION--------------------------------------------------#
 
     tile0 = Tile("Start", 0)
     tile1 = City("Sofia", 100, 1)
@@ -98,7 +99,7 @@ try:
     tileList = [tile0, tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8, tile9, tile10, tile11, tile12, tile13,
                 tile14, tile15, tile16, tile17, tile18, tile19, tile20, tile21, tile22, tile23, tile24, tile25]
 
-    # ---------------------------------------------PLAYER CREATION-----------------------------------------------------#
+    # ---------------------------------------------PLAYER CREATION-------------------------------------------------#
 
     nameEntry = input("What is Player One's Name? ")
     pieceEntry = input("What Character is " + nameEntry + "? ")
@@ -108,14 +109,14 @@ try:
     tweePlayer = Player(nameEntry2, pieceEntry2)
     playerList = [eenPlayer, tweePlayer]
 
-    # --------------------------------------------------GAME-----------------------------------------------------------#
+    # --------------------------------------------------GAME-------------------------------------------------------#
 
     currentPlayerNo = 0
     miss = 0
     while True:
         # Pre-Round Checks
         currentPlayer = playerList[currentPlayerNo]
-        print (currentPlayer.playerName+"'s Turn!")
+        print(currentPlayer.playerName + "'s Turn!")
         if miss == 0:
             if len(playerList) == 1:
                 print(playerList[0].playerName, "has won!")
@@ -144,7 +145,7 @@ try:
                             while lmn == "ON":
                                 if yayornay == "YES":
                                     if currentPlayer.totalCash < i.tilePrice:
-                                        print ("Unable to purchase, insufficient funds.")
+                                        print("Unable to purchase, insufficient funds.")
                                     else:
                                         i.tileOwner = currentPlayer.playerName
                                         currentPlayer.totalCash = (currentPlayer.totalCash - i.tilePrice)
@@ -158,12 +159,12 @@ try:
                             pass
 
                         else:
-                            currentPlayer.totalCash = (currentPlayer.totalCash-(i.tilePrice/2))
-                            i.tileOwner.totalCash = (i.tileOwner.totalCash + (i.tilePrice/2))
+                            currentPlayer.totalCash = (currentPlayer.totalCash - (i.tilePrice / 2))
+                            i.tileOwner.totalCash = (i.tileOwner.totalCash + (i.tilePrice / 2))
 
 
                     else:
-                        print ("Nothing to do here...")
+                        print("Nothing to do here...")
 
 
         elif miss == 1:
@@ -171,7 +172,7 @@ try:
             miss = 0
 
         # Turn Over
-        print ("NEEEEEEEEEEEXXT TURN!")
+        print("NEEEEEEEEEEEXXT TURN!")
         print("\n")
         if currentPlayerNo == 0:
             currentPlayerNo += 1
@@ -179,4 +180,4 @@ try:
             currentPlayerNo = 1
 
 except:
-    print ("Oh poops, there's been an error :(")
+    print("Oh poops, there's been an error :(")
