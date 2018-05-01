@@ -167,11 +167,10 @@ try:
                             print("City already at maximum level.")
                             continue
 
-                    else:
+                    elif i.tileOwner != currentPlayer.playerName:
                         currentPlayer.totalCash = (currentPlayer.totalCash - ((i.tilePrice / 2)*i.tileLevel)
                         renter = i.tileOwner
                         renter.totalCash += ((i.tilePrice / 2)*i.tileLevel)
-
 
                     else:
                         print("Nothing to do here...")
